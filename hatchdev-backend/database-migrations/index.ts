@@ -21,10 +21,22 @@ app.use(loggingMiddleware);
 app.use("/auth", authRouter);
 
 app.listen(PORT, async () => {
-  await sequelize.authenticate()
-  console.log("Database connected successfully.");
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    //   await conn;
+    console.log(`http://localhost:4000`);
+
+    try {
+        await sequelize.authenticate();
+        // await User.sync();
+        console.log("Connection has been established successfully.");
+    } catch (error) {
+        console.error("Unable to connect to the database:", error);
+    }
+
+// app.listen(PORT, async () => {
+//   await sequelize.authenticate()
+//   console.log("Database connected successfully.");
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
 
 
 // import sequelize from "./config/sequelize";
